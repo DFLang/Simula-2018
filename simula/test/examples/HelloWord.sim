@@ -1,0 +1,5 @@
+class HelloWord;
+begin
+   outtext("Hello Word!");
+   outimage;
+end;   

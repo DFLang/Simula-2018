@@ -1,0 +1,17 @@
+class FunctionCall;
+begin
+   boolean b;
+   real x,y;
+   integer array IntArr[1:9];
+   integer procedure P(a,b,c); real a,b,c; begin end;
+   procedure Q(a,b,c,T,IA,pro); name a,pro; value b,T; real a,b,c; Text T; integer array IA; procedure pro;
+   begin 
+      a:=13;
+      b:=14;
+      c:=15;
+   end;
+   
+   P(1,2,3);
+   P((if x<y then 16 else 32),3.14,5.678);
+   Q(x+y,x-y,x**y,"abc",IntArr,P);
+end;   

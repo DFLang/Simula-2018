@@ -1,0 +1,8 @@
+class FileSamples;
+begin
+
+   ref(InFile) input;
+   input:-new InFile("SYSIN");
+
+
+end program;

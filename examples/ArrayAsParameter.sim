@@ -1,0 +1,19 @@
+class ArrayAsParameter;
+begin
+   integer array A[7:89];
+   
+   class CC(AAA); integer array AAA;
+   begin
+      integer m;
+      m:=AAA[74];
+   end;
+   
+   procedure P(AA); integer array AA;
+   begin
+      integer k;
+      k:=AA[9];
+   end;
+   
+   P(A);
+   new CC(A);
+end;   

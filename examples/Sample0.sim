@@ -1,0 +1,7 @@
+begin
+   integer procedure P(i); integer i;
+   begin
+   end;
+   integer res;
+   res:=P(87);
+end;

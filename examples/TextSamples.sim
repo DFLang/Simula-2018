@@ -1,0 +1,25 @@
+!*** TextSamples ***;
+begin Text T,U,amount,price,payment;
+  Procedure PP(T); value T; text T;
+  begin
+     T.setpos(6);
+  end;
+  integer pay;
+  boolean b;
+  Text image;
+  Text Array TA[1:9];
+  ref(InFile) file;
+  T:-blanks(20);
+  if T=U then TA[5]:-T;
+  b:=T.more;
+  b:=file IS InFile;
+  
+  file.setpos(8);
+  amount:-T.sub(20,5); price:-T.sub(30,6);
+  payment:-T.sub(60,10);
+  if(T.strip="order") then
+  begin pay:=amount.getint * price.getfrac;
+     payment.putfrac(pay,2);
+  end;
+  PP(U);
+end;

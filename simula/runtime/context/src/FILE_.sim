@@ -1,0 +1,14 @@
+class FILE_(FILENAME_); value FILENAME_; text FILENAME_;
+      virtual: procedure open, close;
+   begin text image;
+      Boolean OPEN_;
+      text procedure filename; filename:=copy(FILENAME_);
+      Boolean procedure isopen; isopen:=OPEN_;
+      procedure setpos(i); integer i; image.setpos(i);
+      integer procedure pos; pos:=image.pos;
+      Boolean procedure more; more:=image.more;
+      integer procedure length; length:=image.length;
+      
+      if FILENAME_ == notext then error("Illegal File Name");
+end FILE_;      
+      

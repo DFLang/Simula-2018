@@ -1,0 +1,46 @@
+FILE_ class OutFile;
+   virtual: Procedure outimage;
+begin Boolean ENDFILE_;
+
+      procedure open(IMAGE_); Text IMAGE_;
+      begin if(OPEN_) then error("File already opened");
+            OPEN_:=true;
+            image:-IMAGE_;
+            ENDFILE_:=false;
+            image:=notext;
+            setpos(1);
+      end open;
+      
+      procedure close;
+      begin OPEN_:=false
+            ENDFILE_:=true
+            if pos <> 1 then outimage;
+            image:-notext;
+      end;
+      
+      procedure outimage;
+      begin if not open then error("File not opened");
+            ! Implementation dependent ;
+            image := notext;
+            setpos(1);
+      end outimage;      
+
+      procedure outchar(c); character c;
+      begin if not more then outimage;
+            image.putchar(c);
+      end outchar;
+      
+      text procedure FIELD_(w); integer w;
+      begin if w <= 0 or w > length then error("Illegal field width in output operation");
+            if pos+w-1 > length then outimage;
+            FIELD_:-image.sub(pos,w);
+            setpos(pos+w);
+      end FIELD;
+      
+      procedure outint(i,w); integer i,w; FIELD_(w).putint(i);
+      procedure outfix(r,n,w); real r; integer n,w; FIELD_(w).putfix(r,n);
+      procedure outreal(r,n,w); real r; integer n,w; FIELD_(w).putreal(r,n);
+      procedure outfrac(i,n,w); integer i,n,w; FIELD_(w).putfrac(i,n);
+      procedure outtext(T); value T; text T; FIELD_(T.length) := T;
+
+end OutFile;

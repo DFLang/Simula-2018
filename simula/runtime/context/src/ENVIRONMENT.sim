@@ -1,0 +1,22 @@
+class ENVIRONMENT;
+begin
+
+	integer Procedure rank(c); character c; begin end;
+	character Procedure char(n); Integer n; begin end;
+	boolean Procedure digit(c); character c; begin end;
+	boolean Procedure letter(c); Character c; begin end;
+	text Procedure blanks(n); Integer n; begin end;
+	text Procedure copy(T); Text T; begin end;
+	boolean Procedure draw(a,U); name U; real a; Integer U; begin end;
+	real Procedure randint(a,b,U); name U; integer a,U; real b; begin end;
+	real Procedure uniform(a,b,U); name U; real a,b; integer U; begin end;
+	real Procedure normal(a,b,U); name U; real a,b; integer U; begin end;
+	integer Procedure discrete(A,U); name U; real array A; integer U; begin end;
+	integer Procedure histd(A,U); name U; real array A; integer U; begin end;
+	Procedure histo(A,B,c,d); real array A,B; real c,d; begin end;
+	Procedure accum(a,b,c,d); name a,b,c; real a,b,c,d; begin end;
+	Procedure error(msg); text msg; begin end;
+	long real Procedure sqrt(x); long real x; begin end;
+	long real Procedure arctg(x,y); long real x,y; begin end;
+
+end ENVIRONMENT;

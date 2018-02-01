@@ -1,0 +1,79 @@
+begin
+FILE_ class InFile;
+   virtual: Boolean procedure endfile;
+            Procedure inimage;
+begin Boolean ENDFILE_;
+
+      procedure open(IMAGE_); Text IMAGE_;
+      begin if(OPEN_) then error("File already opened");
+            OPEN_:=true;
+            image:-IMAGE_;
+            ENDFILE_:=false;
+            image:=notext;
+            setpos(length+1);
+      end open;
+      
+      procedure close;
+      begin OPEN_:=false
+            ENDFILE_:=true
+            image:-notext;
+      end;
+      
+      Boolean procedure endfile; endfile:=ENDFILE_;
+      
+      procedure inimage;
+      begin if ENDFILE_ then error("Attempt to read past EOF");
+            ! Implementation Defined ;
+            setpos(1);
+      end inimage;     
+      
+      Character procedure inchar;
+      begin if not more then
+            begin inimage; if ENDFILE_ then error("Attempt to read past EOF") end;
+            inchar:=image.getchar
+      end inchar;    
+      
+      Boolean procedure lastitem;
+      begin
+      L:    if ENDFILE_ then lastitem := true else
+            begin
+            M:    if not more then
+                  begin inimage; goto L; end;
+                  if inchar = '_' then goto M else setpos(pos-1);
+            end;      
+      end lastitem;   
+      
+      integer procedure inint;
+      begin text T;
+            if lastitem then error("Attempt to read past EOF");
+            T :- image.sub(pos,length-pos+1);
+            inint := T.getint;
+            setpos(pos+T.pos-1)
+      end inint;
+      
+      real procedure inreal;
+      begin text T;
+            if lastitem then error("Attempt to read past EOF");
+            T :- image.sub(pos,length-pos+1);
+            inreal := T.getreal;
+            setpos(pos+T.pos-1)
+      end inreal;
+      
+      integer procedure infrac;
+      begin text T;
+            if lastitem then error("Attempt to read past EOF");
+            T :- image.sub(pos,length-pos+1);
+            infrac := T.getfrac;
+            setpos(pos+T.pos-1)
+      end infrac;
+      
+      text procedure intext(w); integer w;
+      begin text T; integer m;
+            T :- blanks(w);
+            for m:=1 step 1 until w do T.putchar(inchar);
+            intext :- T;   
+      end intext;
+      
+      ENDFILE_ := true;      
+end InFile;  
+end;                

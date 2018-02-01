@@ -1,0 +1,15 @@
+class BASICIO;
+begin
+   ref(InFile) SYSIN_;
+   ref(InFile) procedure sysin; sysin:-SYSIN_;
+   ref(PrintFile) SYSOUT_;
+   ref(PrintFile) procedure sysout; sysout:-SYSOUT_;
+   
+   SYSIN_ :- new InFile("SYSIN");
+   SYSOUT_ :- new PrintFile("SYSOUT");
+   SYSIN_.open(blanks(80));
+   SYSOUT_.open(blanks(LINELENGTH));
+   inner;
+   SYSIN_.close;
+   SYSOUT_.close;
+end BASICIO;

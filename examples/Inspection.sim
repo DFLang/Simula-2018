@@ -1,0 +1,26 @@
+begin
+   class A; begin integer i; end;
+   A class B; begin integer m; end;
+      
+   ref(A) x; ref(B) y;
+   integer a;
+   
+   inspect x do i:=y.i+1 otherwise a:=4;
+   
+   
+   inspect x
+   when B do
+   begin 
+      integer k;
+      k:=i+4;
+   end
+   when A do
+   begin 
+      integer k;
+      k:=i+16;
+   end
+   otherwise
+   begin integer w;
+      w:=w+1;
+   end;
+end;  
